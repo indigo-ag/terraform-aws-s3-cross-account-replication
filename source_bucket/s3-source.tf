@@ -4,6 +4,8 @@ provider "aws" {
   alias = "source"
 }
 
+data "aws_caller_identity" "current" {}
+
 # S3 source IAM
 
 data "aws_iam_policy_document" "source_replication_role" {
@@ -94,7 +96,7 @@ resource "aws_s3_bucket" "source" {
           owner = "Destination"
         }
 
-        account_id = "${data.aws_caller_identity.dest.account_id}"
+        account_id = "${data.aws_caller_identity.current.account_id}"
       }
     }
   }
