@@ -1,5 +1,9 @@
 # S3 source IAM and bucket
 
+provider "aws" {
+  alias = "source"
+}
+
 # S3 source IAM
 
 data "aws_iam_policy_document" "source_replication_role" {
