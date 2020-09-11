@@ -26,7 +26,6 @@ data "aws_iam_policy_document" "dest_bucket_policy" {
 
 resource "aws_s3_bucket" "dest" {
   count    = "${var.create_dest_bucket == "true" ? 1 : 0}"
-  provider = "aws.dest"
   bucket   = "${var.dest_bucket_name}"
   region   = "${var.dest_region}"
   policy   = "${data.aws_iam_policy_document.dest_bucket_policy.json}"
